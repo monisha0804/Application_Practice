@@ -28,4 +28,14 @@ public class ServiceTest {
 		assertEquals(book,libraryService.save(book));
 		
 	}
+	
+	@Test
+	public void findByIdTest() {
+		when (libraryRepository.findById("2")).thenReturn(Optional.of(new Books("1","The Secret","Motivational","Rhonda byrne")));
+		Optional<Books> cou = libraryService.findById("2");
+		assertEquals("1", cou.get().getId());
+		assertEquals("The Secret",cou.get().getTitle());
+		assertEquals("Motivational",cou.get().getGenre());
+		assertEquals("Rhonda byrne",cou.get().getAuthor());
+	}
 }
