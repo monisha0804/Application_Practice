@@ -38,4 +38,16 @@ public class ServiceTest {
 		assertEquals("Motivational",cou.get().getGenre());
 		assertEquals("Rhonda byrne",cou.get().getAuthor());
 	}
+	
+		@Test
+	public void findByAuthorTest() {
+		Optional<Books> b1=Optional.of(new Books("1","The Secret","Motivational","Rhonda byrne"));
+		Optional<Books> b2=Optional.of(new Books("2","The Secret part 1","Motivational","Rhonda byrne"));
+		List<Optional<Books>> book= new ArrayList<>();
+		book.add(b1);
+		book.add(b2);
+		when(libraryRepository.findByAuthor("Rhonda byrne")).thenReturn(book);
+		assertEquals(libraryService.findByAuthor("Rhonda byrne").size(),2);		
+	}	
+	
 }
