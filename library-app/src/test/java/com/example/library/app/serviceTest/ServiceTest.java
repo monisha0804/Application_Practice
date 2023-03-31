@@ -50,4 +50,15 @@ public class ServiceTest {
 		assertEquals(libraryService.findByAuthor("Rhonda byrne").size(),2);		
 	}	
 	
+	@Test
+	public void findByGenreTest() {
+		Optional<Books> b1=Optional.of(new Books("1","The Secret","Motivational","Rhonda byrne"));
+		Optional<Books> b2=Optional.of(new Books("2","The Secret part 1","Motivational","Rhonda byrne"));
+		List<Optional<Books>> book= new ArrayList<>();
+		book.add(b1);
+		book.add(b2);
+		when(libraryRepository.findByGenre("Motivational")).thenReturn(book);
+		assertEquals(libraryService.findByGenre("Motivational").size(),2);		
+	}	
+	
 }
